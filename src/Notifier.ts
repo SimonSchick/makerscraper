@@ -8,7 +8,7 @@ export class Notifier {
   }
 
   public async notify(target: string, text: string): Promise<void> {
-    this.http.request({
+    await this.http.request({
       body: {
         chat_id: target,
         text,

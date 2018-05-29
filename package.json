@@ -4,7 +4,8 @@
   "description": "Stuff.",
   "main": "dist/index.js",
   "scripts": {
-    "build": "tsc"
+    "build": "tsc",
+    "lint": "tslint -t verbose -p tsconfig.json"
   },
   "repository": {
     "type": "git",

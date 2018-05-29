@@ -16,13 +16,10 @@ const scraperStates = new Map<Scraper, boolean>();
 
 const notifier = new Notifier(http, config.botToken);
 
-async function logError(title: string, err: Error | string): Promise<void> {
+function logError(title: string, err: Error | string) {
   console.error(title, err);
-  try {
-    notifier.notify(config.notify, `${title}\n\n\`\`\`${err instanceof Error ? err.stack : err}\`\`\``);
-  } catch (err2) {
-    console.error('Failed to notify', err2);
-  }
+  notifier.notify(config.notify, `${title}\n\n\`\`\`${err instanceof Error ? err.stack : err}\`\`\``)
+  .catch(err2 => console.error('Failed to notify', err2));
 }
 
 async function tickLogic(): Promise<void> {
@@ -39,7 +36,7 @@ async function tickLogic(): Promise<void> {
       }
       scraperStates.set(scraper, isAvaible);
     } catch (e) {
-      await logError(`Failed to scrape ${scraper.name}`, e);
+      logError(`Failed to scrape ${scraper.name}`, e);
     }
   }
 }
