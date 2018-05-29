@@ -4,6 +4,10 @@ WORKDIR /opt/makerscraper
 
 VOLUME /opt/makerscraper_config
 
+COPY package.json package-lock.json tsconfig.json /opt/makerscraper/
+COPY src /opt/makerscraper/src/
+COPY config/default.js /opt/makerscraper/config/
+
 RUN groupadd -g 1001 scraper && \
   useradd -u 1001 -g 1001 scraper && \
   mkdir -p /opt/makerscraper_config /opt/makerscraper/config && \
@@ -11,10 +15,6 @@ RUN groupadd -g 1001 scraper && \
   npm install && \
   npm run build && \
   npm prune --production
-
-COPY git-commit-id build-id package.json package-lock.json /opt/makerscraper/
-COPY dist /opt/makerscraper/dist/
-COPY config/default.js /opt/makerscraper/config/
 
 USER scraper:scraper
 ENV NODE_ENV=production
