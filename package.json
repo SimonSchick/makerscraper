@@ -1,0 +1,30 @@
+{
+  "name": "makerscraper",
+  "version": "0.0.1",
+  "description": "Stuff.",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SimonSchick/makerscraper.git"
+  },
+  "author": "Simon Schick <demwizzy@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/SimonSchick/makerscraper/issues"
+  },
+  "homepage": "https://github.com/SimonSchick/makerscraper#readme",
+  "devDependencies": {
+    "@types/config": "0.0.34",
+    "@types/node": "^8.10.17",
+    "@types/request": "^2.47.0",
+    "tslint": "^5.10.0",
+    "typescript": "^2.8.3"
+  },
+  "dependencies": {
+    "config": "^1.30.0",
+    "request": "^2.87.0"
+  }
+}
