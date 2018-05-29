@@ -18,4 +18,4 @@ RUN groupadd -g 1001 scraper && \
 
 USER scraper:scraper
 ENV NODE_ENV=production
-CMD ["/usr/bin/node", "/opt/makerscraper/dist/index.js"]
+CMD ["/usr/local/bin/node", "/opt/makerscraper/dist/index.js"]
