@@ -1,0 +1,22 @@
+FROM node:8
+
+ARG NODE_MODULES_FOLDER=node_modules/
+
+ENV NODE_ENV=production
+WORKDIR /opt/makerscraper
+
+VOLUME /opt/makerscraper_config
+
+RUN groupadd -g 1001 scraper && \
+  useradd -u 1001 -g 1001 scraper && \
+  mkdir -p /opt/makerscraper_config /opt/makerscraper/config && \
+  ln -sf /opt/makerscraper_config/app.js /opt/makerscraper/config/production.js && \
+  npm install && \
+  npm run build
+
+COPY git-commit-id build-id package.json package-lock.json /opt/makerscraper/
+COPY dist /opt/makerscraper/dist/
+COPY config/default.js /opt/makerscraper/config/
+
+USER scraper:scraper
+CMD ["/usr/bin/node", "/opt/makerscraper/dist/index.js"]
