@@ -3,13 +3,11 @@ import { RequestHTTPClient } from './HTTPClient';
 import { MadeFurYou } from './MadeFurYou';
 import { Notifier } from './Notifier';
 import { Scraper } from './Scraper';
-import { SunnyValleyCreations } from './SunnyValleyCreations';
 
 const http = new RequestHTTPClient();
 
 const scrapers = [
   new MadeFurYou(http),
-  new SunnyValleyCreations(http),
 ];
 
 const scraperStates = new Map<Scraper, boolean>();
